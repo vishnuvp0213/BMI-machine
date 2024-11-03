@@ -353,15 +353,16 @@ Connect SCK (Clock) on HX711 to Digital Pin 3 on Arduino
 
 ### Project Demo
 # Video
-[Add your demo video link here]
+https://drive.google.com/drive/folders/1kLnk87PIY9sz_SvUEVa_5OVJ-iINHOTO?usp=drive_link
+ the video demonstrates about bmi calculating machine
 *Explain what the video demonstrates*
 
 # Additional Demos
 [Add any extra demo materials/links]
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
+- [T B VISHNU PRASAD]: [CIRCUITS ARRANGENMENT]
+- [SANA VK]: [LOGIC IN CALCULATION OF BMI]
 - [Name 3]: [Specific contributions]
 
 ---

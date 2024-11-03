@@ -168,17 +168,16 @@ It also shows the BMI category
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+https://github.com/vishnuvp0213/BMI-machine/blob/848952368f80e0bd3e5c58ac8cf4ddd963fa241f/screenshot/Screenshot%20(293).png
+This is the calibration of Hx711
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+https://github.com/vishnuvp0213/BMI-machine/blob/848952368f80e0bd3e5c58ac8cf4ddd963fa241f/screenshot/Screenshot%20(295).png
+This is the results obtained in BMI machine
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
 
 # Diagrams
-![Workflow](Add your workflow/architecture diagram here
+
+
                           +------------------------+
                           |      Power Supply      |
                           +------------------------+
@@ -200,8 +199,6 @@ For Software:
                                +------v------+
                                | Display BMI |
                                +-------------+
-)
-*Add caption explaining your workflow*
 
 Workflow for BMI calculator using arduino 
 
@@ -223,11 +220,8 @@ Workflow for BMI calculator using arduino
 For Hardware:
 
 # Schematic & Circuit
-![Circuit](Add your circuit diagram 
-  )
-*Add caption explaining connections*
 
-![Schematic](                +---------------+
+               +---------------+
                 |               |
          +----> | Load Cell     |
          |      |               |
@@ -248,8 +242,6 @@ For Hardware:
                 | D2   D3       |
                 +---------------+
 
-*Add caption explaining the schematic*
-Schematic Connections:
 
 Load Cell Connections to HX711:
 

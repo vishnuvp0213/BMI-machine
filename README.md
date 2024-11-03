@@ -285,8 +285,61 @@ For Hardware:
   )
 *Add caption explaining connections*
 
-![Schematic](Add your schematic diagram here)
+![Schematic](                +---------------+
+                |               |
+         +----> | Load Cell     |
+         |      |               |
+         |      +---------------+
+         |               |
+         |               |
+         |      +---------------+
+         |      | HX711 Module  |
+         +----> |               |
+         |      | VCC   DT SCK  |
+         |      | GND   -  -    |
+         |      +---------------+
+         |               |
+         |      +---------------+
+         |      | Arduino Uno   |
+         |      |               |
+         +----> | 5V  GND      |
+                | D2   D3       |
+                +---------------+
+
 *Add caption explaining the schematic*
+Schematic Connections:
+
+Load Cell Connections to HX711:
+
+Load Cell Wire Colors (usually):
+
+Red: Excitation+ (E+)
+
+Black: Excitation- (E-)
+
+White: Signal+ (S+)
+
+Green: Signal- (S-)
+
+HX711 Connections:
+
+Connect the Red wire from the load cell to E+ (A+ on HX711)
+
+Connect the Black wire from the load cell to E- (A- on HX711)
+
+Connect the White wire from the load cell to S+ (A- on HX711)
+
+Connect the Green wire from the load cell to S- (A+ on HX711)
+
+HX711 Pin to Arduino Connections:Connect VCC (on HX711) to 5V on Arduino
+
+Connect GND (on HX711) to GND on Arduino
+
+Connect DT (Data) on HX711 to Digital Pin 2 on Arduino
+
+Connect SCK (Clock) on HX711 to Digital Pin 3 on Arduino
+
+
 
 # Build Photos
 ![Components](Add photo of your components here)

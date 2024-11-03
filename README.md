@@ -1,26 +1,25 @@
 8<img width="1280" alt="readme-banner" src="https://github.com/user-attachments/assets/35332e92-44cb-425b-9dff-27bcf1023c6c">
 
-# [BMI Machine] 🎯
+# BMI Machine 🎯
 
 
 ## Basic Details
-### Team Name: [TECS]
+### Team Name: TECS
 
 
 ### Team Members
-- Team Lead: [Vishnuprasad] - [NSS College of engineering ]
-- Member 2: [sana] - [NSS college of engineering]
+- Team Lead: T B Vishnu prasad - NSS College of engineering,Palakkad
+- Member 2: sana V K - NSS college of engineering,Palakkad
 
 ### Project Description
 This project involves building a BMI calculator using arduino uno,ultrasonic sensor,load cell and HX711 module .The ultrasonic sensor measures height,while the load cell and HX711 module measures weight.The arduino processes these inputs to calculate and display the BMI.And also it provides the details of the range of that measure.
 
 The objective of this project  is to develop an affordable, user-friendly BMI calculator using simple and readily available components intented to provide low cost solution for all individuals at all economic status. 
+### The Problem(that doesn't exist)
 
- )
-[]
 
 ###  The Solution (that nobody asked for)
-[Since our aim is to provide low-cost, readily accessible,effective solution ,we are using arduino based BMI calculator.Such that it can provide quick access with real time information to all individuals in an affordable way even from their home.
+Since our aim is to provide low-cost, readily accessible,effective solution ,we are using arduino based BMI calculator.Such that it can provide quick access with real time information to all individuals in an affordable way even from their home.
 
 
 Way of working:

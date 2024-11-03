@@ -155,21 +155,19 @@ For Software:
 # Installation
 [#include "HX711.h"
 
-// Pin configuration for HX711 and ultrasonic sensor
 #define DT_PIN 3
 #define SCK_PIN 2
 #define TRIG_PIN 6
 #define ECHO_PIN 7
 
-// HX711 setup
-HX711 scale;
+
 
 void setup() {
   Serial.begin(9600);
   
-  // Initialize HX711
+  
   scale.begin(DT_PIN, SCK_PIN);
-  scale.set_scale(2280.f); // Calibration factor - adjust based on your calibration
+  scale.set_scale(2280.f); //
 
   pinMode(TRIG_PIN, OUTPUT);
   pinMode(ECHO_PIN, INPUT);
@@ -178,9 +176,9 @@ void setup() {
 }
 
 float getWeight() {
-  // Get weight from HX711 load cell
+  
   if (scale.is_ready()) {
-    float weight = scale.get_units(5); // Average of 5 readings
+    float weight = scale.get_units(5);
     return weight;
   } else {
     Serial.println("HX711 not found.");
@@ -189,7 +187,7 @@ float getWeight() {
 }
 
 float getHeight() {
-  // Measure height with ultrasonic sensor
+  
   digitalWrite(TRIG_PIN, LOW);
   delayMicroseconds(2);
   digitalWrite(TRIG_PIN, HIGH);
@@ -198,7 +196,7 @@ float getHeight() {
 
   float duration = pulseIn(ECHO_PIN, HIGH);
   float distance = duration * 0.034 / 2; // Convert to cm
-  return distance / 100; // Convert cm to meters
+  return distance / 100; 
 }
 
 void loop() {
@@ -208,11 +206,11 @@ void loop() {
   if (height > 0) {
     float bmi = weight / (height * height); // BMI calculation
     Serial.print("Weight: ");
-    Serial.print(weight, 1); // 1 decimal point
+    Serial.print(weight, 1); 
     Serial.print(" kg, Height: ");
-    Serial.print(height, 2); // 2 decimal points
+    Serial.print(height, 2);
     Serial.print(" m, BMI: ");
-    Serial.println(bmi, 1); // 1 decimal point
+    Serial.println(bmi, 1); 
   } else {
     Serial.println("Error: Height measurement failed.");
   }

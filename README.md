@@ -10,7 +10,6 @@
 ### Team Members
 - Team Lead: [Vishnuprasad] - [NSS College of engineering ]
 - Member 2: [sana] - [NSS college of engineering]
-- Member 3: [Name] - [College]
 
 ### Project Description
 This project involves building a BMI calculator using arduino uno,ultrasonic sensor,load cell and HX711 module .The ultrasonic sensor measures height,while the load cell and HX711 module measures weight.The arduino processes these inputs to calculate and display the BMI.And also it provides the details of the range of that measure.
@@ -54,8 +53,6 @@ Components Used:
 
 Arduino Uno: This microcontroller is the heart of this  BMI calculator, running the code and processing inputs.
 
-Keypad: Used to enter weight(kg) and height(m). 
-
 • LCD Display (16x2 ): Used to show the entered values and the calculated BMI result. 
 
 Load Cell: To measure weight directly, a load cell with an HX711 amplifier can be integrated for accurate weight measurement.
@@ -72,16 +69,13 @@ Libraries:
 
 LiquidCrystal library for interfacing with the LCD display.
 
-Keypad library for working with a matrix keypad.
-
 HX711 library  for interpreting data from the weight sensor.
 
 NewPing library  for handling distance measurements.
 
 3. Code and Logic:
 
-Input Processing:The keypad allows users to enter height (in meters) and weight (kg).
- Arduino will read directly from the sensors and process it.
+Input Processing:Arduino will read directly from the sensors and process it.
 
 BMI Calculation:
 
@@ -152,71 +146,139 @@ measures distance from 2cm to 4cm with an accuracy of 0.3 cm.
 
 ### Implementation
 For Software:
-# Installation
-[#include "HX711.h"
+[# Installation
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#include "HX711.h"
 
-#define DT_PIN 3
-#define SCK_PIN 2
-#define TRIG_PIN 6
-#define ECHO_PIN 7
+// HX711 setup for weight measurement
+const int LOADCELL_DOUT_PIN = 3;  // DT pin of HX711
+const int LOADCELL_SCK_PIN = 2;   // SCK pin of HX711
+HX711 scale;
+float calibration_factor = -23440.94;  // Replace with your calibrated factor
 
+// Ultrasonic sensor setup for height measurement
+const int TRIG_PIN = 7;            // Trig pin of HC-SR04
+const int ECHO_PIN = 6;            // Echo pin of HC-SR04
+float initial_height_cm = 0.0;
+bool initialHeightMeasured = false;
 
+// LCD setup
+LiquidCrystal_I2C lcd(0x27, 16, 2); // Adjust address if necessary
 
 void setup() {
   Serial.begin(9600);
-  
-  
-  scale.begin(DT_PIN, SCK_PIN);
-  scale.set_scale(2280.f); //
+  Serial.println("BMI Calculator");
 
+  // Setup HX711 for weight measurement
+  scale.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
+  scale.set_scale(calibration_factor);  // Set your calibration factor
+  scale.tare();  // Reset the scale to 0
+
+  // Setup ultrasonic sensor pins
   pinMode(TRIG_PIN, OUTPUT);
   pinMode(ECHO_PIN, INPUT);
 
-  Serial.println("BMI Calculator Initialized");
+  // Setup LCD
+  lcd.begin(16, 2);
+  lcd.backlight();
+  lcd.print("Measuring height...");
+
+  // Measure initial height from sensor to ground
+  initial_height_cm = measureHeight();
+  Serial.print("Initial Height (from sensor to ground): ");
+  Serial.print(initial_height_cm);
+  Serial.println(" cm");
+  lcd.clear();
+  lcd.print("Initial Height:");
+  lcd.setCursor(0, 1);
+  lcd.print(initial_height_cm);
+  lcd.print(" cm");
+  initialHeightMeasured = true;
+  delay(4000);
+  lcd.clear();
 }
 
-float getWeight() {
-  
-  if (scale.is_ready()) {
-    float weight = scale.get_units(5);
-    return weight;
+void loop() {
+  // Measure weight
+  float weight_kg = scale.get_units(10);  // Average 10 readings for stable output
+  Serial.print("Weight: ");
+  Serial.print(weight_kg, 2);
+  Serial.println(" kg");
+
+  lcd.clear();
+  lcd.print("Weight: ");
+  lcd.print(weight_kg, 2);
+  lcd.print(" kg");
+
+  // Wait 4 seconds before the next measurement
+  delay(4000);
+
+  // Measure height when human is standing
+  float standing_height_cm = measureHeight();
+  float human_height_cm = initial_height_cm - standing_height_cm;  // Calculate human height in cm
+  float human_height_m = human_height_cm / 100;                    // Convert height to meters
+  Serial.print("Height: ");
+  Serial.print(human_height_m, 2);   // Display height in meters
+  Serial.println(" m");
+
+  lcd.clear();
+  lcd.print("Height: ");
+  lcd.print(human_height_m, 2);
+  lcd.print(" m");
+
+  // 4-second delay after measuring height before calculating BMI
+  delay(4000);
+
+  // Calculate BMI
+  if (human_height_m > 0) {
+    float bmi = weight_kg / (human_height_m * human_height_m);  // BMI formula
+    Serial.print("BMI: ");
+    Serial.print(bmi, 2);
+    Serial.println();
+
+    lcd.clear();
+    lcd.print("BMI: ");
+    lcd.print(bmi, 2);
+
+    // BMI category display
+    String category;
+    if (bmi < 18.5) {
+      category = "Underweight";
+    } else if (bmi >= 18.5 && bmi < 24.9) {
+      category = "Normal weight";
+    } else if (bmi >= 25 && bmi < 29.9) {
+      category = "Overweight";
+    } else {
+      category = "Obesity";
+    }
+
+    Serial.println("Category: " + category);
+    lcd.setCursor(0, 1);
+    lcd.print(category);
+    Serial.println("------------------------");
   } else {
-    Serial.println("HX711 not found.");
-    return 0;
+    Serial.println("Invalid height reading.");
+    lcd.clear();
+    lcd.print("Invalid height");
   }
+
+  // 4-second delay before restarting loop
+  delay(4000);
 }
 
-float getHeight() {
-  
+// Function to measure height using ultrasonic sensor
+float measureHeight() {
   digitalWrite(TRIG_PIN, LOW);
   delayMicroseconds(2);
   digitalWrite(TRIG_PIN, HIGH);
   delayMicroseconds(10);
   digitalWrite(TRIG_PIN, LOW);
 
-  float duration = pulseIn(ECHO_PIN, HIGH);
-  float distance = duration * 0.034 / 2; // Convert to cm
-  return distance / 100; 
+  long duration = pulseIn(ECHO_PIN, HIGH);
+  return duration * 0.0343 / 2;  // Calculate distance in cm
 }
 
-void loop() {
-  float weight = getWeight();
-  float height = getHeight();
-
-  if (height > 0) {
-    float bmi = weight / (height * height); // BMI calculation
-    Serial.print("Weight: ");
-    Serial.print(weight, 1); 
-    Serial.print(" kg, Height: ");
-    Serial.print(height, 2);
-    Serial.print(" m, BMI: ");
-    Serial.println(bmi, 1); 
-  } else {
-    Serial.println("Error: Height measurement failed.");
-  }
-
-  delay(2000); // Delay between measurements
-}
 ]
 
 # Run
@@ -361,9 +423,8 @@ https://drive.google.com/drive/folders/1kLnk87PIY9sz_SvUEVa_5OVJ-iINHOTO?usp=dri
 [Add any extra demo materials/links]
 
 ## Team Contributions
-- [T B VISHNU PRASAD]: [CIRCUITS ARRANGENMENT]
-- [SANA VK]: [LOGIC IN CALCULATION OF BMI]
-- [Name 3]: [Specific contributions]
+- [T B VISHNU PRASAD]: [hardware implementaiom]
+- [SANA VK]: [software and weight calibration]
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 

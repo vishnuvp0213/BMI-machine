@@ -168,8 +168,11 @@ It also shows the BMI category
 For Software:
 
 # Screenshots (Add at least 3)
-https://github.com/vishnuvp0213/BMI-machine/blob/848952368f80e0bd3e5c58ac8cf4ddd963fa241f/screenshot/Screenshot%20(293).png
+![calibration](https://github.com/user-attachments/assets/e127c4f1-c171-465e-8c6c-1ecd3392c9c5)
 This is the calibration of Hx711
+
+![test](https://github.com/user-attachments/assets/838f8aed-1c26-4fb8-94f1-14241b63742f)
+This is the testing of weight 
 
 ![BMI](https://github.com/user-attachments/assets/d7a0f04c-9d79-4443-9147-691c24a9e406)
 This is the results obtained in BMI machine
@@ -276,23 +279,31 @@ Connect SCK (Clock) on HX711 to Digital Pin 3 on Arduino
 
 
 # Build photos
-(https://github.com/vishnuvp0213/BMI-machine/blob/447ffac3a3766cae698fb9fdc9c128c47a6b1e07/WhatsApp%20Image%202024-11-04%20at%2006.54.31.jpeg)
-*List out all components shown*
+![hx711 and load cells](https://github.com/user-attachments/assets/5c72a311-0084-483c-a9aa-efab432464e8)
+HX711 module with four 50 kg load cells
+![Ultrasonic sensor](https://github.com/user-attachments/assets/f09f604a-260a-4593-bb39-88ab9a3a94e1)
+This is the ultrasonic sensor used to measure height
+![ardrino](https://github.com/user-attachments/assets/41d12df0-1bb7-4d4b-8427-7f38e9c3b844)
+Ardrino uno board used to compute the BMI 
+![LCD](https://github.com/user-attachments/assets/5ddb704d-7a7f-4f1b-8753-16955a08e776)
+LCD display used to display results
 
-(https://github.com/vishnuvp0213/BMI-machine/blob/25a57ec17af84bbc79e2fd22ca30c30055d08442/WhatsApp%20Image%202024-11-03%20at%2008.51.52.jpeg))
-*Explain the build steps*
+THE COMPONENTS ARE:
+1)Ardrino Uno
+2)HX711 with four 50KG load cells
+3)Ultrasonic sensors
+4)Liquid Crystal Display I2C
 
-blob:https://web.whatsapp.com/b3349f87-34ed-46a4-9716-0d9427451b17
-*Explain the final build*
+
+![final_model](https://github.com/user-attachments/assets/efc4839b-a139-4ab5-afde-347e36cb36c9)
+This is the final hardware model of BMI machine ,we can measure BMI and see result in LCD display by simply standing in 
+weight measurement unit
 
 ### Project Demo
 # Video
 https://drive.google.com/drive/folders/1kLnk87PIY9sz_SvUEVa_5OVJ-iINHOTO?usp=drive_link
- the video demonstrates about bmi calculating machine
-*Explain what the video demonstrates*
+ the video demonstrates about BMI calculation using our model
 
-# Additional Demos
-[Add any extra demo materials/links]
 
 ## Team Contributions
 - [T B VISHNU PRASAD]: [hardware implementaiom]

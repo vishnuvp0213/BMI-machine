@@ -171,7 +171,7 @@ For Software:
 https://github.com/vishnuvp0213/BMI-machine/blob/848952368f80e0bd3e5c58ac8cf4ddd963fa241f/screenshot/Screenshot%20(293).png
 This is the calibration of Hx711
 
-https://github.com/vishnuvp0213/BMI-machine/blob/848952368f80e0bd3e5c58ac8cf4ddd963fa241f/screenshot/Screenshot%20(295).png
+![BMI](https://github.com/user-attachments/assets/d7a0f04c-9d79-4443-9147-691c24a9e406)
 This is the results obtained in BMI machine
 
 

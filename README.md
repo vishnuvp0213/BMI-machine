@@ -276,7 +276,7 @@ Connect SCK (Clock) on HX711 to Digital Pin 3 on Arduino
 
 
 # Build Photos
-![Components](Add photo of your components here)
+![Build](https://github.com/vishnuvp0213/BMI-machine/blob/main/Hardware2024%20%283%29.pdf)
 *List out all components shown*
 
 ![Build](Add photos of build process here)

@@ -279,7 +279,7 @@ Connect SCK (Clock) on HX711 to Digital Pin 3 on Arduino
 WhatsApp Image 2024-11-04 at 06.54.31.jpeg
 *List out all components shown*
 
-![Build](Add photos of build process here)
+(https://github.com/vishnuvp0213/BMI-machine/blob/25a57ec17af84bbc79e2fd22ca30c30055d08442/WhatsApp%20Image%202024-11-03%20at%2008.51.52.jpeg))
 *Explain the build steps*
 
 ![Final](Add photo of final product here)
